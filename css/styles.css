@@ -1,0 +1,252 @@
+* {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+.heading {
+  background-color: #34495e;
+  color: #fff;
+  padding: 8px 8px;
+  font: 24px sans-serif;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+#searchContainer {
+  position: absolute;
+  width: calc(100% - 20px);
+  z-index: 999;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(156 163 175);
+  border-radius: 8px;
+  background-color: white;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  #searchContainer {
+    max-width: 320px;
+    margin-left: 33px;
+    margin-right: 33px;
+    margin-top: 33px;
+  }
+}
+
+#search {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 4px;
+}
+
+#searchIcon > svg {
+  width: 24px;
+  height: 24px;
+}
+
+#searchInput {
+  outline: 0;
+  width: 100%;
+  font-size: 16px;
+  height: 24px;
+  border: 0;
+}
+
+#searchInput::placeholder {
+  color: #9ca3af;
+}
+
+#suggestions {
+  overflow-y: scroll;
+  max-height: 16rem;
+  display: none;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#suggestions > li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#suggestions > li:hover {
+  background-color: rgb(243 244 246);
+}
+
+#controls {
+  position: absolute;
+  z-index: 999;
+  right: 10px;
+  bottom: 10px;
+}
+
+@media (min-width: 640px) {
+  #controls {
+    right: 40px;
+    bottom: 33px;
+  }
+}
+
+#controls > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.control {
+  padding: 4px;
+  background-color: white;
+  border: 0;
+}
+
+.control:hover {
+  background-color: rgb(229 231 235) !important;
+}
+
+.control > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+#resetControl,
+#aboutControl {
+  border-radius: 6px;
+}
+
+#zoomControls {
+  display: flex;
+  flex-direction: column;
+}
+
+#zoomControls > button:hover {
+  background-color: white;
+}
+
+#zoomControls > button:first-child {
+  border-radius: 6px 6px 0 0;
+}
+
+#zoomControls > button:last-child {
+  border-radius: 0 0 6px 6px;
+}
+
+#modalScreen {
+  position: relative;
+  z-index: 9999;
+  display: none;
+}
+
+#modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(107, 114, 128, 0.75);
+}
+
+#modalContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  #modalContainer {
+    align-items: center;
+    padding: 0px;
+  }
+}
+
+#modal {
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: white;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  #modal {
+    max-width: 512px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+  }
+}
+
+#modalBody {
+  background-color: white;
+  padding: 20px 16px 0px 16px;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  #modalBody {
+    padding: 24px 24px 0px 24px;
+    text-align: left;
+  }
+}
+
+#modalTitle {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+#modalContent {
+  margin-top: 8px;
+  color: rgb(107 114 128);
+  font-size: 14px;
+}
+
+#modalActions {
+  padding: 12px 16px;
+}
+
+@media (min-width: 640px) {
+  #modalActions {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+.modalAction {
+  margin-top: 12px;
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgb(209 213 219);
+  background-color: white;
+  padding: 8px 16px;
+  font-weight: 500;
+  color: rgb(55 65 81);
+}
+
+.modalAction:hover {
+  background-color: rgb(249 250 251);
+}
+
+@media (min-width: 640px) {
+  .modalAction {
+    margin-top: 0;
+    margin-left: 12px;
+    width: auto;
+  }
+}

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>Map-INSA</title>
+    <meta name="theme-color" content="#ffc83b" />
+    <meta
+      name="description"
+      content="Find your way around the INSA Toulouse campus."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Map-INSA" />
+    <meta property="og:title" content="Map-INSA" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://etud.insa-toulouse.fr/~clubinfo/logo.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://etud.insa-toulouse.fr/~clubinfo/logo.png"
+    />
+    <meta property="og:url" content="." />
+    <meta
+      property="og:description"
+      content="Find your way around the INSA Toulouse campus."
+    />
+
+    <link rel="stylesheet" href="./css/maptalks.min.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <!-- Search -->
+    <div id="searchContainer">
+      <div id="search">
+        <span id="searchIcon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+            />
+          </svg>
+        </span>
+        <input
+          type="text"
+          placeholder="Lancer une recherche"
+          id="searchInput"
+        />
+      </div>
+
+      <!-- Suggestions -->
+      <ul id="suggestions"></ul>
+    </div>
+
+    <!-- Controls -->
+    <div id="controls">
+      <div>
+        <!-- Reset -->
+        <button
+          id="resetControl"
+          class="control"
+          onclick="reset()"
+          aria-label="Reset to default view"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+            />
+          </svg>
+        </button>
+
+        <!-- Zoom In/Out -->
+        <div id="zoomControls">
+          <button class="control" onclick="zoomIn()" aria-label="Zoom in">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6v12m6-6H6"
+              />
+            </svg>
+          </button>
+          <button class="control" onclick="zoomOut()" aria-label="Zoom out">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M18 12H6"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- About -->
+        <button
+          id="aboutControl"
+          class="control"
+          onclick="showInfoModal()"
+          aria-label="About"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="modalScreen">
+      <!-- Modal Overlay -->
+      <div id="modalOverlay"></div>
+
+      <!-- Modal -->
+      <div id="modalContainer">
+        <div id="modal">
+          <div id="modalBody">
+            <h3 id="modalTitle"></h3>
+            <div id="modalContent"></div>
+          </div>
+          <div id="modalActions">
+            <button id="modal-close" type="button" class="modalAction">
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.138.3/three.min.js"
+      integrity="sha512-AULygUpzXeEwzx9VCz35G2O8dW4DZzBlj7+kiVTgWTAKAEbxAMKhr53ze2w1W1g48H5mkbUDj8aQ0F+2LOxblQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/maptalks.min.js"></script>
+    <script src="./js/maptalks.three.min.js"></script>
+    <script src="./js/buildings.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
